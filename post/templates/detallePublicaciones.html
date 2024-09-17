@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle de Publicación{% endblock %}
+
+{% block content %}
+    <h1>{{ post.Titulo }}</h1>
+    <p><strong>Autor:</strong> {{ post.Autor.username }}</p>
+    <p><strong>Fecha de Publicación:</strong> {{ post.Fecha_de_Publicacion|date:"d M Y H:i" }}</p>
+    <div>
+        <h2>Contenido:</h2>
+        <p>{{ post.Contenido }}</p>
+    </div>
+    <a href="{% url 'lista_post' %}">Volver a la lista</a>
+{% endblock %}

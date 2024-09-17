@@ -22,7 +22,7 @@
                     <h2>{{ post.Titulo }}</h2>
                     <p><strong>Autor:</strong> {{ post.Autor.username }}</p>
                     <p><strong>Fecha de Publicación:</strong> {{ post.Fecha_de_Publicacion|date:"d M Y H:i" }}</p>
-                    <a href="{% url 'detallePublicacion' post.id %}">Ver detalles</a>
+                    <a href="{% url 'detalle_post' post.id %}">Ver detalles</a>
                 </li>
                 <hr>
             {% endfor %}
