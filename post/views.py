@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 
 def posts_create(request):
@@ -19,3 +19,11 @@ def posts_list(request):
         posts = Post.objects.all()  
     
     return render(request, 'listaPublicaciones.html', {'posts': posts})
+
+
+
+def posts_detail(request, post_id):
+    # Recupera el post usando el ID proporcionado. Si no se encuentra, se muestra un error 404.
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'detallePublicaciones.html', {'post': post})
+
