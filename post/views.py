@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 
 def posts_create(request):
     if request.method == 'POST':
@@ -26,4 +29,16 @@ def posts_detail(request, post_id):
     # Recupera el post usando el ID proporcionado. Si no se encuentra, se muestra un error 404.
     post = get_object_or_404(Post, id=post_id)
     return render(request, 'detallePublicaciones.html', {'post': post})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Se inicia sesion automaticamente al registrarse
+            return redirect('lista_post')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
