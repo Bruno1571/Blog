@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Publicaciones{% endblock %}
+
+{% block content %}
+    <h1>Lista de Publicaciones</h1>
+    
+    <!-- Formulario para filtrar por autor -->
+    <form method="get" action="">
+        <label for="autor">Filtrar por autor:</label>
+        <input type="text" name="autor" id="autor">
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <hr>
+
+    <!-- Mostrar la lista de publicaciones -->
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <h2>{{ post.Titulo }}</h2>
+                    <p><strong>Autor:</strong> {{ post.Autor.username }}</p>
+                    <p><strong>Fecha de Publicación:</strong> {{ post.Fecha_de_Publicacion|date:"d M Y H:i" }}</p>
+                    <a href="{% url 'detallePublicacion' post.id %}">Ver detalles</a>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay publicaciones disponibles.</p>
+    {% endif %}
+{% endblock %}

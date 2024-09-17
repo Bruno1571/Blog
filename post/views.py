@@ -11,3 +11,11 @@ def posts_create(request):
     return render(request, 'create.html')
 
 
+def posts_list(request):
+    nombreAutor = request.GET.get('autor') 
+    if nombreAutor:
+        posts = Post.objects.filter(Autor=nombreAutor)  
+    else:
+        posts = Post.objects.all()  
+    
+    return render(request, 'listaPublicaciones.html', {'posts': posts})
