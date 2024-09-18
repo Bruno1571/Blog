@@ -12,7 +12,7 @@ def posts_create(request):
         post = Post(Titulo=title, Contenido=content, Autor=request.user)
         post.save()
         return redirect('crear_post')
-    return render(request, 'crear_post')
+    return render(request, 'create.html')
 
 
 def posts_list(request):
