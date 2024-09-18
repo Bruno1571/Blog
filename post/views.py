@@ -14,7 +14,7 @@ def posts_create(request):
         return redirect('crear_post')
     return render(request, 'create.html')
 
-
+@login_required
 def posts_list(request):
     nombreAutor = request.GET.get('autor') 
     if nombreAutor:
@@ -25,7 +25,7 @@ def posts_list(request):
     return render(request, 'listaPublicaciones.html', {'posts': posts})
 
 
-
+@login_required
 def posts_detail(request, post_id):
     # Recupera el post usando el ID proporcionado. Si no se encuentra, se muestra un error 404.
     post = get_object_or_404(Post, id=post_id)

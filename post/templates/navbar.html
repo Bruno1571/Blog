@@ -1,0 +1,12 @@
+<nav>
+    <ul>
+        <li><a href="{% url 'lista_post' %}">Inicio</a></li>
+        <li><a href="{% url 'crear_post' %}">Crear Publicación</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        {% else %}
+            <li><a href="{% url 'signup' %}">Registrarse</a></li>
+            <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        {% endif %}
+    </ul>
+</nav>
