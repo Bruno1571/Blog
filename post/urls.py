@@ -7,5 +7,6 @@ urlpatterns = [
     path('posts/<int:post_id>/', views.posts_detail, name='detalle_post'),
     path('signup/', views.signup, name='signup'),
     path('posts/<int:post_id>/delete/', views.posts_delete, name='eliminar_post'),
+    path('posts/<int:post_id>/edit/', views.posts_edit, name='editar_post'),
     # Otras URLs...
 ]
