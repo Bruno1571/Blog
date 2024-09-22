@@ -59,3 +59,17 @@ def posts_delete(request, post_id):
         return redirect('lista_post')
 
     return render(request, 'confirmar_eliminacion.html', {'post': post})
+
+
+@login_required
+def posts_edit(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        post.titulo = request.POST.get('titulo')
+        post.contenido = request.POST.get('contenido')
+        post.save()
+        return redirect('posts_detail', post_id=post.id)
+
+    return render(request, 'editarPublicacion.html', {'post': post})
+
