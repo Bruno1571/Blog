@@ -69,7 +69,7 @@ def posts_edit(request, post_id):
         post.titulo = request.POST.get('titulo')
         post.contenido = request.POST.get('contenido')
         post.save()
-        return redirect('posts_detail', post_id=post.id)
+        return redirect('lista_post')
 
     return render(request, 'editarPublicacion.html', {'post': post})
 
