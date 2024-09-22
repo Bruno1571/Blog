@@ -43,3 +43,19 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
+
+@login_required
+def posts_delete(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method=='POST':
+        post.delete()
+
+@login_required
+def posts_delete(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        post.delete()
+        return redirect('lista_post')
+
+    return render(request, 'confirmar_eliminacion.html', {'post': post})
