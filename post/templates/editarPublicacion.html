@@ -7,10 +7,10 @@
 <form method="post" action="{% url 'editar_post' post.id %}">
     {% csrf_token %}
     <label for="Titulo">Título:</label>
-    <input type="text" name="Titulo" id="Titulo" value="{{ post.Titulo }}" required>
+    <input type="text" name="Titulo" id="Titulo" required>
 
     <label for="Contenido">Contenido:</label>
-    <textarea name="Contenido" id="Contenido" required>{{ post.Contenido }}</textarea>
+    <textarea name="Contenido" id="Contenido" required></textarea>
 
     <button type="submit">Actualizar</button>
 </form>

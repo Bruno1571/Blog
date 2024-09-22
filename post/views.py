@@ -66,10 +66,11 @@ def posts_edit(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
     if request.method == 'POST':
-        post.titulo = request.POST.get('titulo')
-        post.contenido = request.POST.get('contenido')
+        post.Titulo = request.POST.get('Titulo')  
+        post.Contenido = request.POST.get('Contenido') 
         post.save()
         return redirect('lista_post')
 
     return render(request, 'editarPublicacion.html', {'post': post})
+
 
