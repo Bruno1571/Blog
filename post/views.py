@@ -3,6 +3,8 @@ from .models import Post
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 
 @login_required
 def posts_create(request):
@@ -16,13 +18,17 @@ def posts_create(request):
 
 @login_required
 def posts_list(request):
-    nombreAutor = request.GET.get('autor') 
+    nombreAutor = request.GET.get('autor')
     if nombreAutor:
-        posts = Post.objects.filter(Autor=nombreAutor)  
+        user = User.objects.filter(username=nombreAutor).first()
+        if user:
+            posts = Post.objects.filter(Autor=user)
+        else:
+            posts = []
     else:
-        posts = Post.objects.all()  
-    
-    return render(request, 'listaPublicaciones.html', {'posts': posts})
+        posts = Post.objects.all()
+
+    return render(request, 'listaPublicaciones.html', {'posts': posts, 'nombreAutor': nombreAutor})
 
 
 @login_required

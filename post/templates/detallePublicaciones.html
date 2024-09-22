@@ -12,7 +12,8 @@
         <p>{{ post.Contenido }}</p>
     </div>
     <a href="{% url 'lista_post' %}">Volver a la lista</a>
-
+    <br>
+    <br>
     {% if request.user == post.Autor %}
         <a href="{% url 'eliminar_post' post.id %}">Eliminar</a>
     {% endif %}

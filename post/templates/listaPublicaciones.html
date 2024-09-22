@@ -8,7 +8,7 @@
     <!-- Formulario para filtrar por autor -->
     <form method="get" action="">
         <label for="autor">Filtrar por autor:</label>
-        <input type="text" name="autor" id="autor">
+        <input type="text" name="autor" id="autor" value="{{ nombreAutor|default:'' }}">
         <button type="submit">Filtrar</button>
     </form>
 
@@ -28,6 +28,11 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>No hay publicaciones disponibles.</p>
+        {% if nombreAutor %}
+            <p>No hay publicaciones disponibles para el autor "{{ nombreAutor }}".</p>
+            <a href="{% url 'lista_post' %}">Volver a listar todas las publicaciones</a>
+        {% else %}
+            <p>No hay publicaciones disponibles.</p>
+        {% endif %}
     {% endif %}
 {% endblock %}
