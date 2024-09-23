@@ -4,10 +4,12 @@
 
 {% block content %}
     <h1>Confirmar Eliminacion</h1>
-    <p>¿Estas seguro de que deseas eliminar la publicacion "{{ post.Titulo }}"?</p>
+    <p class="eliminar-item">¿Estas seguro de que deseas eliminar la publicacion "{{ post.Titulo }}"?</p>
     <form action="{% url 'eliminar_post' post.id %}" method="post">
         {% csrf_token %}
         <button type="submit">Si, eliminar</button>
     </form>
-    <a href="{% url 'lista_post' %}">Cancelar</a>
+    <div  class="eliminar-item">
+        <a href="{% url 'lista_post' %}">Cancelar</a>
+    </div>
 {% endblock %}
